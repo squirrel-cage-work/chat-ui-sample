@@ -23,6 +23,13 @@ https://reactrouter.com/home
 npm install react-router-dom@latest
 ```
 
+icon 
+```
+npm i --save @fortawesome/fontawesome-svg-core
+npm install --save @fortawesome/free-solid-svg-icons
+npm install --save @fortawesome/react-fontawesome
+```
+
 ## Cognito Definition
 
 Amaozn Cognito を作成して Pool ID と Pool Client Id を .env として以下に保存する。

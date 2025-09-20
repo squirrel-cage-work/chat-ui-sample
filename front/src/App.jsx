@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // load custom component
 import Layout from './components/Layouts/Layout';
 import Home from './components/Home/Home';
+import Chat from './components/Chat/Chat';
 
 function App() {
 
@@ -22,6 +23,14 @@ function App() {
               element={
                 <Authenticator loginMechanism={['email']} hideSignUp>
                   {({ user, signOut }) => <Home user={user} signOut={signOut} />}
+                </Authenticator>
+              }
+            />
+            <Route
+              path="/chat"
+              element={
+                <Authenticator loginMechanism={['email']} hideSignUp>
+                  {({ user, signOut }) => <Chat user={user} signOut={signOut} />}
                 </Authenticator>
               }
             />
