@@ -1,14 +1,10 @@
-import { useContext } from "react";
-import { AuthContext } from "../../contexts/AuthContext";
-
 export default function Home() {
 
-    const { userAttr } = useContext(AuthContext);
-
-    return(
+    return (
         <>
-        <h1>Hello World</h1>
-        <a>{JSON.stringify(userAttr, null, 2)}</a>
+            <h1 className="fixed top-10 text-3xl text-gray-600">
+                Welcome to AI Agent Chat !!
+            </h1>
         </>
     );
 }
