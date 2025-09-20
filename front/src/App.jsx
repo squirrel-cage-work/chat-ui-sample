@@ -6,22 +6,25 @@ import './amplifyConfig'
 // load custom module
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // load custom component
-import { Home } from './components/Home/Home';
+import Layout from './components/Layouts/Layout';
+import Home from './components/Home/Home';
 
 function App() {
 
   return (
     <Router>
-      <Routes>
+      <Layout>
+        <Routes>
           <Route
             path="/"
             element={
               <Authenticator loginMechanism={['email']} hideSignUp>
-                  {({ user, signOut}) => <Home user={user} signOut={signOut} />}
+                {({ user, signOut }) => <Home user={user} signOut={signOut} />}
               </Authenticator>
-            } 
+            }
           />
-      </Routes>
+        </Routes>
+      </Layout>
     </Router>
   )
 }

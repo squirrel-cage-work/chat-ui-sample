@@ -22,3 +22,12 @@ https://reactrouter.com/home
 ```
 npm install react-router-dom@latest
 ```
+
+## Cognito Definition
+
+Amaozn Cognito を作成して Pool ID と Pool Client Id を .env として以下に保存する。
+
+``` .env
+VITE_USER_POOL_ID=
+VITE_USER_POOL_CLIENT_ID
+```
