@@ -3,6 +3,7 @@ import './App.css'
 import { Authenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import './amplifyConfig'
+import AuthProvider from './contexts/AuthContext';
 // load custom module
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // load custom component
@@ -13,18 +14,20 @@ function App() {
 
   return (
     <Router>
-      <Layout>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Authenticator loginMechanism={['email']} hideSignUp>
-                {({ user, signOut }) => <Home user={user} signOut={signOut} />}
-              </Authenticator>
-            }
-          />
-        </Routes>
-      </Layout>
+      <AuthProvider>
+        <Layout>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Authenticator loginMechanism={['email']} hideSignUp>
+                  {({ user, signOut }) => <Home user={user} signOut={signOut} />}
+                </Authenticator>
+              }
+            />
+          </Routes>
+        </Layout>
+      </AuthProvider>
     </Router>
   )
 }
