@@ -1,6 +1,10 @@
 import { useContext, useState, useEffect, use } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faRobot, faUser } from '@fortawesome/free-solid-svg-icons';
+
+
 export default function Chat() {
     const [input, setInput] = useState(""); // from chat text erea
     const [messages, setMessages] = useState([]);
@@ -39,11 +43,17 @@ export default function Chat() {
                         <div
                             key={i}
                             className={`mb-1 mr-2 ml-2 max-w-[85%] ${msg.role === "user"
-                                ? "mr-auto bg-blue-400 rounded-2xl text-white px-4 py-1"
-                                : "ml-auto bg-gray-300 rounded-2xl text-black px-4 py-2"
+                                ? "ml-auto bg-blue-400 rounded-2xl text-white px-4 py-2"
+                                : "mr-auto bg-gray-300 rounded-2xl text-black px-4 py-2"
                                 }`}
                         >
-                            {msg.content}, {msg.role}
+                            {msg.role === "assistant" && (
+                                <FontAwesomeIcon icon={faRobot} className="mr-2" />
+                            )}
+                            {msg.role === "user" && (
+                                <FontAwesomeIcon icon={faUser} className="mr-2" />
+                            )}
+                            <span>{msg.content}, {msg.role}</span>
                         </div>
                     ))}
                 </div>
