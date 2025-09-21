@@ -48,8 +48,8 @@ export default function Chat() {
             {/* 
             チャットエリア：role: user の場合は右よりに、tole: assistant の場合は左よりに表示する
              */}
-            <div className="w-full flex flex-col justify-center text-cenetr">
-                <div className="mx-auto h-200 overflow-y-auto w-[70%] mt-20">
+            <div className="flex flex-col w-full items-center">
+                <div className="mx-auto overflow-y-auto w-[70%] max-h-[50vh]">
                     {messages.map((msg, i) => (
                         <div
                             key={i}
@@ -71,10 +71,10 @@ export default function Chat() {
                 {/* 
             インプットエリアの定義：３行で Send をクリックすると textarea をクリアする
             */}
-                    <div className="flex flex-col items-center mt-10">
+                    <div className="flex flex-col fixed bottom-10 w-full items-center">
                         <textarea
                             rows={3}
-                            className="border rounded focus:outline-none focus:ring focus:border-blue-500 resize-none h-32 w-[70%] mb-4"
+                            className="border rounded focus:outline-none focus:ring focus:border-blue-500 mb-4 w-[50%]"
                             value={input}
                             onChange={(e) => setInput(e.currentTarget.value)}
                             placeholder="メッセージを入力..." />
