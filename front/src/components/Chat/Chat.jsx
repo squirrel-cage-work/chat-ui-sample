@@ -3,7 +3,10 @@ import { AuthContext } from "../../contexts/AuthContext";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRobot, faUser } from '@fortawesome/free-solid-svg-icons';
+import { callBedrockAgentCore } from "../../api/callBedrockAgentCore";
 
+// import custom module
+export { callBedrockAgentCore } from '../../api/callBedrockAgentCore';
 
 export default function Chat() {
     const [input, setInput] = useState(""); // from chat text erea
@@ -26,7 +29,15 @@ export default function Chat() {
         setInput("");
 
         // 仮の AI Agent 応答
-        setMessages([...newMessage, { role: "assistant", content: "AI です" }])
+        // setMessages([...newMessage, { role: "assistant", content: "AI です" }])
+        try {
+            const response = await callBedrockAgentCore(jwtToken, input);
+            const aiMessage = response?.output?.text ?? " do not response from AI agent";
+            setMessages([...newMessage, { role: "assistant", content: aiMessage }]);  
+        } catch (error) {
+            setMessages([...newMessage, { role: "assistant", content: "error" }]);
+        }
+
     };
 
     return (
@@ -53,7 +64,7 @@ export default function Chat() {
                             {msg.role === "user" && (
                                 <FontAwesomeIcon icon={faUser} className="mr-2" />
                             )}
-                            <span>{msg.content}, {msg.role}</span>
+                            <span className="whitespace-pre-wrap">{msg.content}</span>
                         </div>
                     ))}
                 </div>

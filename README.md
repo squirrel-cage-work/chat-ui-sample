@@ -30,6 +30,12 @@ npm install --save @fortawesome/free-solid-svg-icons
 npm install --save @fortawesome/react-fontawesome
 ```
 
+## AI Agent (途中)
+
+```
+{ input: { prompt: input }}
+```
+
 ## Cognito (途中)
 
 Amazon Cognito を作成してプール ID とクライアント ID を以下の .env に保存します。
