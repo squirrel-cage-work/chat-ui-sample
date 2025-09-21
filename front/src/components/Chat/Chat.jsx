@@ -32,7 +32,7 @@ export default function Chat() {
         // setMessages([...newMessage, { role: "assistant", content: "AI です" }])
         try {
             const response = await callBedrockAgentCore(jwtToken, input);
-            const aiMessage = response?.output?.text ?? " do not response from AI agent";
+            const aiMessage = response?.output?.message?.content?.[0]?.text ?? " do not response from AI agent";
             setMessages([...newMessage, { role: "assistant", content: aiMessage }]);  
         } catch (error) {
             setMessages([...newMessage, { role: "assistant", content: "error" }]);

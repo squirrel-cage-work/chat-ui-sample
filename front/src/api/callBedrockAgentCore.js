@@ -1,9 +1,10 @@
 import { AWS_REGION, AGENTCORE_ARN } from "../config.js";
+import { decodeJWT } from "aws-amplify/auth";
 
 export const callBedrockAgentCore = async (jwtToken, inputToken) => {
 
-    const endcodedArn = encodeURIComponent(AGENTCORE_ARN);
-    const agentCoreUrl = `https://bedrock-agentcore.${AWS_REGION}.amazonaws.com/runtimes/${endcodedArn}/invocations?qualifier=DEFAULT`;
+    const encodedArn = encodeURIComponent(AGENTCORE_ARN);
+    const agentCoreUrl = `https://bedrock-agentcore.${AWS_REGION}.amazonaws.com/runtimes/${encodedArn}/invocations?qualifier=DEFAULT`;
     const body = JSON.stringify({ input: { prompt: inputToken } });
     const headers = {
         "Authorization": `Bearer ${jwtToken}`,
