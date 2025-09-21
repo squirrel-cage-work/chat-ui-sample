@@ -33,7 +33,7 @@ export default function Chat() {
         try {
             const response = await callBedrockAgentCore(jwtToken, input);
             const aiMessage = response?.output?.message?.content?.[0]?.text ?? " do not response from AI agent";
-            setMessages([...newMessage, { role: "assistant", content: aiMessage }]);  
+            setMessages([...newMessage, { role: "assistant", content: aiMessage }]);
         } catch (error) {
             setMessages([...newMessage, { role: "assistant", content: "error" }]);
         }
@@ -49,7 +49,7 @@ export default function Chat() {
             チャットエリア：role: user の場合は右よりに、tole: assistant の場合は左よりに表示する
              */}
             <div className="w-full flex flex-col justify-center text-cenetr">
-                <div className="mx-auto h-96 overflow-y-auto w-[90%]">
+                <div className="mx-auto h-200 overflow-y-auto w-[70%] mt-20">
                     {messages.map((msg, i) => (
                         <div
                             key={i}
@@ -71,20 +71,20 @@ export default function Chat() {
                 {/* 
             インプットエリアの定義：３行で Send をクリックすると textarea をクリアする
             */}
-                <div className="flex flex-col items-center">
-                    <textarea
-                        rows={3}
-                        className="border rounded focus:outline-none focus:ring focus:border-blue-500 resize-none h-32 w-[90%] mb-4"
-                        value={input}
-                        onChange={(e) => setInput(e.currentTarget.value)}
-                        placeholder="メッセージを入力..." />
-                    <button
-                        className="bg-blue-500 rounded py-2 px-4 text-white active:scale-95 hover:bg-blue-700 w-[10%]"
-                        onClick={sendMessage}
-                    >
-                        Send
-                    </button>
-                </div>
+                    <div className="flex flex-col items-center mt-10">
+                        <textarea
+                            rows={3}
+                            className="border rounded focus:outline-none focus:ring focus:border-blue-500 resize-none h-32 w-[70%] mb-4"
+                            value={input}
+                            onChange={(e) => setInput(e.currentTarget.value)}
+                            placeholder="メッセージを入力..." />
+                        <button
+                            className="bg-blue-500 rounded py-2 px-4 text-white active:scale-95 hover:bg-blue-700 w-[10%]"
+                            onClick={sendMessage}
+                        >
+                            Send
+                        </button>
+                    </div>
             </div>
         </>
     );
